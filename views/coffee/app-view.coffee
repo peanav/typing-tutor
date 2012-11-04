@@ -15,6 +15,7 @@ define [
 
     render: ->
       @.$el.append Mustache.render template
+      @.$('#tasks').css('padding-top', ($(window).height() / 2) - 193)
       @
 
     renderTasks: ->
@@ -31,7 +32,7 @@ define [
           ele.find('input')[0].focus()
           ele.removeClass('bounceInUp')
         ,1000
-        #@.textToSpeech ele.find('div').text()
+        @.textToSpeech ele.find('div').text()
 
     textToSpeech: (text) ->
       audio = document.createElement('audio')
