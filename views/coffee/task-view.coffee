@@ -1,10 +1,10 @@
 define [
   'lib/backbone',
   'lib/mustache',
-  'text!templates/type-task.mustache'
+  'text!templates/task.mustache'
 ], (Backbone, Mustache, template) ->
   Backbone.View.extend {
-    className: 'type-task'
+    className: 'task'
 
     events: {
       'keyup input': 'checkTyping'

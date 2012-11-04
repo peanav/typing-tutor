@@ -3,13 +3,13 @@ define [
   'lib/backbone',
   'lib/mustache',
   'text!templates/app.mustache',
-  'text-collection',
-  'text-view'
-], ($, Backbone, Mustache, template, TextCollection, TextView) ->
+  'task-collection',
+  'task-view'
+], ($, Backbone, Mustache, template, TaskCollection, TaskView) ->
   Backbone.View.extend {
     el: $('#app')
     initialize: ->
-      @.collection = new TextCollection()
+      @.collection = new TaskCollection()
       @.collection.bind 'reset', this.renderTasks, this
       @.collection.bind 'change', this.taskChanged, this
 
@@ -20,12 +20,12 @@ define [
 
     renderTasks: ->
       @.collection.each (task) ->
-        view = new TextView model: task
+        view = new TaskView model: task
         @.$('#tasks').append view.render().el
       , this
 
     activateFirst: ->
-      ele = @.$('.type-task:not(.active):first')
+      ele = @.$('.task:not(.active):first')
       if ele[0]
         ele.addClass('active bounceInUp').find('input')
         window.setTimeout ->

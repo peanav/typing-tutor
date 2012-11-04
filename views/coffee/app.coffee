@@ -1,4 +1,4 @@
-define ['lib/jquery', 'app-view', 'text-collection', 'text-model'], ($, AppView, Texts, Text) ->
+define ['lib/jquery', 'app-view'], ($, AppView) ->
   init = ->
     app = new AppView()
     app.render()
