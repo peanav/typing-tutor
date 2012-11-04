@@ -1,0 +1,6 @@
+.bundle
+vendor/bundle
+*.swp
+.DS_Store
+public/styles
+*-built.js

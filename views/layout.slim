@@ -1,0 +1,22 @@
+doctype html
+/!
+  !
+   _  __     _        _
+  | |/ /__ _| |_ __ _| |_  _ ___
+  | ' </ _` |  _/ _` | | || (_-<
+  |_|\_\__,_|\__\__,_|_|\_,_/__/
+  !
+
+/ Condidtional IE comment that will put a ie class on the main html element if IE
+/[ if IE ]
+  html.ie
+== '<!--[if !(IE)]><!--> <html class=""> <!--<![endif]-->'
+head
+  meta charset="utf-8"
+  meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+  link href="/styles/app.css" rel="stylesheet"
+  == yield_content :styles
+body
+  == yield
+  script src=settings.js_app[:src] data-main=settings.js_app[:data_main] type="text/javascript"
+  == yield_content :scripts
