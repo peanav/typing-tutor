@@ -15,7 +15,7 @@ define [
 
     render: ->
       @.$el.append Mustache.render template
-      @.$('#tasks').css('padding-top', ($(window).height() / 2) - 193)
+      @.$('#tasks').css('padding-top', ($(window).height() / 2) - 180)
       @
 
     renderTasks: ->
