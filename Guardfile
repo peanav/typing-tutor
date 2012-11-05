@@ -15,11 +15,6 @@ group :run do
     watch(%r|^modules/(.+)\.rb$|)
   end
 
-  guard :livereload do
-    watch(%r{public/scripts.+\.(js|html|mustache)})
-    watch(%r{views/coffee.+\.(coffee)})
-  end
-
   if(ARGV.include?('-o'))
     Thread.new do
       sleep(2)

@@ -19,8 +19,6 @@ group :development, :test do
   gem 'guard', '~>1.0.0'
   gem 'guard-minitest'
   gem 'rack-test'
-  gem 'guard-livereload'
-  gem 'rack-livereload'
   gem 'guard-process'
   gem 'foreman'
   gem 'launchy'
