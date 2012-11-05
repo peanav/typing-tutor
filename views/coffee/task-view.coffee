@@ -8,6 +8,7 @@ define [
 
     events: {
       'keyup input': 'checkTyping'
+      'blur input': 'focusAgain'
     }
 
     render: ->
@@ -35,5 +36,10 @@ define [
       window.setTimeout ->
         self.$el.removeClass('shake')
       , 1500
+
+    focusAgain: (e) ->
+      window.setTimeout =>
+        @.$('input').trigger 'focus'
+      , 200
   }
 
