@@ -38,6 +38,6 @@ define [
     focusAgain: (e) ->
       window.setTimeout =>
         @.$('input').trigger 'focus'
-      , 200 if @.model.completed == false
+      , 200 if @.model.get('completed') == false
   }
 
