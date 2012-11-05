@@ -26,15 +26,13 @@ define [
           @.correct()
 
     correct: ->
-      self = @
       @.model.set 'completed', true
       @.$el.addClass('bounceOutUp')
 
     wrong: ->
-      self = @
       @.$el.addClass('shake')
-      window.setTimeout ->
-        self.$el.removeClass('shake')
+      window.setTimeout =>
+        @.$el.removeClass 'shake'
       , 1500
 
     focusAgain: (e) ->
