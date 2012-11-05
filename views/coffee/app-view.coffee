@@ -38,7 +38,7 @@ define [
         window.setTimeout =>
           ele.find('input')[0].focus()
           ele.removeClass('bounceInUp')
-          @.$('#read').show().addClass 'show'
+          @.$('#read').addClass 'show'
         ,1000
         @.textToSpeech ele.find('div').text()
 
@@ -55,7 +55,7 @@ define [
 
     taskChanged: (task) ->
       if task.get('completed')
-        @.$('#read').hide().removeClass 'show'
+        @.$('#read').removeClass 'show'
         @.collection.shift()
         @.activateFirst()
         @.$('#tasks').css('margin-top', '-=235px')
