@@ -3,7 +3,7 @@
 
 body {
   background-color: #ddd;
-  background-image: url(../images/bg.jpg);
+  background-image: url(../img/bg.jpg);
   font-family: HelveticaNeue-Light, 'Helvetica Neue', Helvetica, 'Droid Sans', arial, sans-serif;
 }
 
@@ -31,6 +31,17 @@ h1 {
     line-height: 60px;
     color: #777;
     margin-top: -140px;
+  }
+}
+
+#read {
+  text-align: center;
+  opacity: 0;
+  -webkit-transition: opacity 1s;
+  transition: opacity 1s;
+
+  &.show {
+    opacity: 1;
   }
 }
 

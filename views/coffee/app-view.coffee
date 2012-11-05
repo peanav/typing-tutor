@@ -8,6 +8,11 @@ define [
 ], ($, Backbone, Mustache, template, TaskCollection, TaskView) ->
   Backbone.View.extend {
     el: $('#app')
+
+    events: {
+      'click button': 'readAgain'
+    }
+
     initialize: ->
       @.collection = new TaskCollection()
       @.collection.bind 'reset', this.renderTasks, this
@@ -30,20 +35,27 @@ define [
       ele = @.$('.task:not(.active):first')
       if ele[0]
         ele.addClass('active bounceInUp').find('input')
-        window.setTimeout ->
+        window.setTimeout =>
           ele.find('input')[0].focus()
           ele.removeClass('bounceInUp')
+          @.$('#read').show().addClass 'show'
         ,1000
         @.textToSpeech ele.find('div').text()
 
     textToSpeech: (text) ->
+      @.currentText = text if text
       audio = document.createElement('audio')
-      audio.setAttribute('src', "/voice?q=#{escape text}")
+      audio.setAttribute('src', "/voice?q=#{escape @.currentText}")
       audio.load()
       audio.play()
 
+    readAgain: ->
+      @.textToSpeech()
+
+
     taskChanged: (task) ->
       if task.get('completed')
+        @.$('#read').hide().removeClass 'show'
         @.collection.shift()
         @.activateFirst()
         @.$('#tasks').css('margin-top', '-=235px')
