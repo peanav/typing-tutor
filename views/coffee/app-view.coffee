@@ -12,17 +12,19 @@ define [
       @.collection = new TaskCollection()
       @.collection.bind 'reset', this.renderTasks, this
       @.collection.bind 'change', this.taskChanged, this
+      @.collection.bind 'remove', this.taskRemoved, this
 
     render: ->
       @.$el.append Mustache.render template
-      @.$('#tasks').css('padding-top', ($(window).height() / 2) - 180)
       @
 
     renderTasks: ->
+      @.total = @.collection.length
       @.collection.each (task) ->
         view = new TaskView model: task
         @.$('#tasks').append view.render().el
       , this
+      $('.total-tasks').text @.collection.length
 
     activateFirst: ->
       ele = @.$('.task:not(.active):first')
@@ -45,4 +47,8 @@ define [
         @.collection.shift()
         @.activateFirst()
         @.$('#tasks').css('margin-top', '-=235px')
+
+    taskRemoved: ->
+      $('.current-task').text(@.total - @.collection.length + 1) if @.collection.length
+
   }
