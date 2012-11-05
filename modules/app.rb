@@ -1,8 +1,12 @@
 require 'open-uri'
+require 'yaml'
+require 'json'
 
 class KatalusApp < Sinatra::Base
 
   get '/' do
+    sentences = YAML.load_file('data/sentences.yml').shift(5).sort_by { rand(100) }
+    @sentences = sentences.map {|s| {sentence: s} }
     slim :index
   end
 
