@@ -5,7 +5,7 @@ require 'json'
 class KatalusApp < Sinatra::Base
 
   get '/' do
-    sentences = YAML.load_file('data/sentences.yml').sort_by { rand(100) }.shift(5)
+    sentences = YAML.load_file('data/sentences.yml').sort_by { rand(100) }.shift(3)
     @sentences = sentences.map {|s| {sentence: s} }
     slim :index
   end

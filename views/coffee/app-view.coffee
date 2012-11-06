@@ -5,7 +5,8 @@ define [
   'text!templates/app.mustache',
   'task-collection',
   'task-view'
-], ($, Backbone, Mustache, template, TaskCollection, TaskView) ->
+  'events'
+], ($, Backbone, Mustache, template, TaskCollection, TaskView, events) ->
   Backbone.View.extend {
     el: $('#app')
 
@@ -62,5 +63,6 @@ define [
 
     taskRemoved: ->
       $('.current-task').text(@.total - @.collection.length + 1) if @.collection.length
+      events.trigger('tasks:finished') unless @.collection.length
 
   }

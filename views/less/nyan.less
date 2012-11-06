@@ -1,0 +1,48 @@
+.nyan-cat {
+  .animate;
+  -webkit-animation-name: nyan;
+  animation-name: nyan;
+  -webkit-animation-duration: 5s;
+  animation-duration: 5s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-delay: .3s;
+  animation-delay: .3s;
+
+  &:not(:first-child) {
+  -webkit-animation-delay: 3s;
+  animation-delay: 3s;
+  -webkit-animation-name: nyan-two;
+  animation-name: nyan-two;
+  }
+}
+
+#nyan-cat-two img {
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
+
+  &:not(:first-child) {
+    -webkit-animation-delay: 3.3s;
+    animation-delay: 3.3s;
+  }
+}
+
+#nyan-cat-three img {
+  -webkit-animation-delay: 2s;
+  animation-delay: 2s;
+
+  &:not(:first-child) {
+    -webkit-animation-delay: 4s;
+    animation-delay: 4s;
+  }
+}
+
+@-webkit-keyframes nyan {
+  0% {-webkit-transform: translateX(-100%);}
+  100% {-webkit-transform: translateX(500%);}
+}
+
+@-webkit-keyframes nyan-two {
+  0% {-webkit-transform: translateX(-210%);}
+  100% {-webkit-transform: translateX(400%);}
+}
