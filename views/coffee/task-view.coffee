@@ -20,9 +20,12 @@ define [
       value = @.$('input').val()
       sentence = @.model.get('sentence')
       if value.length == sentence.length
-        if value != sentence
-          @.wrong(value, sentence) if value != @model.get('guess')
+        @.setMarks StringCompare.compare(value, sentence) if @.marks
+        unless value == sentence
+          @.wrong() unless value == @model.get('guess') and @.marks
+          @.setMarks StringCompare.compare(value, sentence)
           @.model.set('guess', value)
+          @.marks = true
         else
           @.correct()
 
@@ -30,12 +33,11 @@ define [
       @.model.set 'completed', true
       @.$el.addClass('bounceOutUp')
 
-    wrong: (value, sentence)->
+    wrong: ->
       @.$el.addClass('shake')
       window.setTimeout =>
         @.$el.removeClass 'shake'
       , 1500
-      @.setMarks StringCompare.compare(value, sentence)
 
     setMarks: (indices)->
       errors = @.$('.errors').empty()
