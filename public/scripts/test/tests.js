@@ -1,6 +1,6 @@
 !function() {
   var tests = [
-    'test/spec/views/katalus-view-spec'
+    'test/spec/string-compare-spec'
   ];
 
   define(tests);

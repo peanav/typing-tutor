@@ -25,4 +25,8 @@ class KatalusApp < Sinatra::Base
     coffee :"/coffee/#{script_name}", :bare => true
   end
 
+  get '/scripts/test/spec/*.js' do |script_name|
+    coffee :"/coffee/test/spec/#{script_name}", :bare => true
+  end
+
 end
