@@ -103,9 +103,22 @@ h1 {
     background: #a445ee;
   }
 
-  div {
+  div.text {
     padding: 0 30px;
     .type
+  }
+
+  div.errors {
+    position: relative;
+
+    mark {
+      position: absolute;
+      height: 78px;
+      width: 22px;
+      background: rgba(255,0,0,0.3);
+      top: 20px;
+      left: 96px;
+    }
   }
 
   span {

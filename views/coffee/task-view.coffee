@@ -1,8 +1,9 @@
 define [
   'lib/backbone',
   'lib/mustache',
-  'text!templates/task.mustache'
-], (Backbone, Mustache, template) ->
+  'text!templates/task.mustache',
+  'string-compare'
+], (Backbone, Mustache, template, StringCompare) ->
   Backbone.View.extend {
     className: 'task'
 
@@ -20,7 +21,7 @@ define [
       sentence = @.model.get('sentence')
       if value.length == sentence.length
         if value != sentence
-          @.wrong() if value != @model.get('guess')
+          @.wrong(value, sentence) if value != @model.get('guess')
           @.model.set('guess', value)
         else
           @.correct()
@@ -29,11 +30,19 @@ define [
       @.model.set 'completed', true
       @.$el.addClass('bounceOutUp')
 
-    wrong: ->
+    wrong: (value, sentence)->
       @.$el.addClass('shake')
       window.setTimeout =>
         @.$el.removeClass 'shake'
       , 1500
+      @.setMarks StringCompare.compare(value, sentence)
+
+    setMarks: (indices)->
+      errors = @.$('.errors').empty()
+      errors.append _.reduce(indices, (memo, index) =>
+        memo.push "<mark style='left:#{30+22*index}px'></mark>"
+        memo
+      , []).join ''
 
     focusAgain: (e) ->
       window.setTimeout =>

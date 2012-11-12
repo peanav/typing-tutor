@@ -41,7 +41,7 @@ define [
           ele.removeClass('bounceInUp')
           @.$('#read').addClass 'show'
         ,1000
-        @.textToSpeech ele.find('div').text()
+        #@.textToSpeech ele.find('div').text()
 
     textToSpeech: (text) ->
       @.currentText = text if text
